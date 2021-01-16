@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const process  = require('process')
 const axios    = require('axios')
 const Airtable = require('airtable')
@@ -53,4 +54,4 @@ async function main() {
 
 main()
     .then(() => console.log('All records updated'))
-    .catch(e => console.error(e)) //console.error(e))
+    .catch(e => console.error(e))
