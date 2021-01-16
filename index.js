@@ -2,6 +2,7 @@ const process  = require('process')
 const axios    = require('axios')
 const Airtable = require('airtable')
 const STUBS    = require('./stubs')
+const dateFormat = require('dateformat')
 
 const apiKey = process.env.AIRTABLE_API_KEY 
 const base = new Airtable({apiKey: apiKey}).base(process.env.AIRTABLE_BASE_ID)
@@ -10,15 +11,15 @@ const base = new Airtable({apiKey: apiKey}).base(process.env.AIRTABLE_BASE_ID)
 async function main() {
     const stockTable = base('Stock')
 
-    base('Stock').select({
+    const records = await base('Stock').select({
         view: 'Grid view'
-    }).firstPage(async function(err, records) {
-        if (err) {
-            console.error(err)
-            return
-        }
+    }).firstPage()
+    
 
-        const awaitables = records.map(async function(record) {
+    const now = new Date()
+    const nowString = dateFormat(now, 'dddd, mmmm dS, yyyy, h:MM:ss TT')
+
+    const awaitables = records.map(async function(record) {
             const store = record.get('Store')
 
             const digitalUrl = record.get('Digital URL')
@@ -37,23 +38,17 @@ async function main() {
                     'Digital Status': digitalInStockCallback(digitalUrlContents) ? 'In Stock' : 'Not In Stock',
                     'Standard URL': standardUrl,
                     'Standard Status': standardInStockCallback(standardUrlContents) ? 'In Stock' : 'Not In Stock',
+                    'Updated At': nowString, 
                 }
             }
         })
 
 
-        base('Stock').replace(await Promise.all(awaitables), function(err, records) {
-            if (err) {
-                console.error(err)
-                return
-            }
+    const updatedRecords = await base('Stock').replace(await Promise.all(awaitables))
 
-            records.forEach( r => console.log(r.get('Updated At')))
-
-        })
-    })
+    updatedRecords.forEach(console.log)
 }
 
 main()
-    .then(() => console.log('updating'))
+    .then(() => console.log('All records updated'))
     .catch(e => console.error(e)) //console.error(e))
