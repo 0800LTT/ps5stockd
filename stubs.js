@@ -41,7 +41,27 @@ const STUBS = {
         standardInStockCallback: (pageContents) => {
             return !pageContents.toLowerCase().includes('Out of Stock. Expected in stock: January 2021'.toLowerCase())    
         },
+    },
+
+    'Tesco': {
+        digitalInStockCallback: (pageContents) => {
+            return false
+        },
+        standardInStockCallback: (pageContents) => {
+            return !pageContents.toLowerCase().includes('Sorry, this product is currently not available'.toLowerCase())
+        },
+    },
+    
+    'D.I.D Electrical': {
+        digitalInStockCallback: (pageContents) => {
+            return !pageContents.includes('https://www.did.ie/media/wysiwyg/Sony-PS5-Thank-You_1.png')
+        },
+        standardInStockCallback: (pageContents) => {
+            return !pageContents.includes('https://www.did.ie/media/wysiwyg/Sony-PS5-Thank-You_1.png')
+        },
     }
+
+    
 }
 
 module.exports = STUBS

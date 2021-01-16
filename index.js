@@ -25,13 +25,14 @@ async function main() {
 
             console.log(`Fetching ${store} digital console status`)
             const digitalUrl = record.get('Digital URL')
+            const digitalUrlContents = digitalUrl ? (await axios.get(digitalUrl)).data : ''
             const digitalInStockCallback = STUBS[store].digitalInStockCallback
-            const digitalUrlContents = (await axios.get(digitalUrl)).data
+
 
             
             console.log(`Fetching ${store} standard console status`)
             const standardUrl = record.get('Standard URL')
-            const standardUrlContents = (await axios.get(standardUrl)).data
+            const standardUrlContents = standardUrl ? (await axios.get(standardUrl)).data : ''
             const standardInStockCallback = STUBS[store].standardInStockCallback
 
             console.log(`Fetched ${store} data`)
