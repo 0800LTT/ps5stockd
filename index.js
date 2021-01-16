@@ -22,13 +22,18 @@ async function main() {
     const awaitables = records.map(async function(record) {
             const store = record.get('Store')
 
+            console.log(`Fetching ${store} digital console status`)
             const digitalUrl = record.get('Digital URL')
             const digitalInStockCallback = STUBS[store].digitalInStockCallback
             const digitalUrlContents = (await axios.get(digitalUrl)).data
 
+            
+            console.log(`Fetching ${store} standard console status`)
             const standardUrl = record.get('Standard URL')
             const standardUrlContents = (await axios.get(standardUrl)).data
             const standardInStockCallback = STUBS[store].standardInStockCallback
+
+            console.log(`Fetched ${store} data`)
 
             return {
                 'id': record.id,
@@ -43,10 +48,7 @@ async function main() {
             }
         })
 
-
-    const updatedRecords = await base('Stock').replace(await Promise.all(awaitables))
-
-    updatedRecords.forEach(console.log)
+    await base('Stock').replace(await Promise.all(awaitables))
 }
 
 main()
