@@ -4,10 +4,10 @@
   "description": "Check PS5 is in stock and update Airtable",
   "main": "index.js",
   "bin": {
-    "ps5stockd": "./index.js"
+    "ps5stockd": "./cli.js"
   },
   "scripts": {
-    "ps5stockd": "node index.js",
+    "ps5stockd": "node cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,7 +16,8 @@
     "airtable": "^0.10.1",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
-    "dateformat": "^4.4.1"
+    "dateformat": "^4.4.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "eslint": "^7.18.0"
