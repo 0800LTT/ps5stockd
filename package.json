@@ -1,10 +1,13 @@
 {
-  "name": "stockd",
+  "name": "ps5stockd",
   "version": "1.0.0",
   "description": "Check PS5 is in stock and update Airtable",
   "main": "index.js",
+  "bin": {
+    "ps5stockd": "./index.js"
+  },
   "scripts": {
-    "stockd": "node index.js",
+    "ps5stockd": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
