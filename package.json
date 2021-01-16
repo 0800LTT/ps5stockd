@@ -1,0 +1,20 @@
+{
+  "name": "stockd",
+  "version": "1.0.0",
+  "description": "Check PS5 is in stock and update Airtable",
+  "main": "index.js",
+  "scripts": {
+    "stockd": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "airtable": "^0.10.1",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0"
+  }
+}
