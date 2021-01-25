@@ -36,10 +36,10 @@ const STUBS = {
 
     'Smyths Toys': {
         digitalInStockCallback: (pageContents) => {
-            return !pageContents.toLowerCase().includes('Out of Stock. Expected in stock: January 2021'.toLowerCase())    
+            return !pageContents.toLowerCase().includes('Out of Stock. Expected in stock'.toLowerCase())    
         },
         standardInStockCallback: (pageContents) => {
-            return !pageContents.toLowerCase().includes('Out of Stock. Expected in stock: January 2021'.toLowerCase())    
+            return !pageContents.toLowerCase().includes('Out of Stock. Expected in stock'.toLowerCase())    
         },
     },
 
