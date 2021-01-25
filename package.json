@@ -14,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "airtable": "^0.10.1",
-    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "dateformat": "^4.4.1",
     "node-fetch": "^2.6.1"

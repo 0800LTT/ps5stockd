@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-const Airtable = require('airtable')
-const STUBS    = require('./stubs')
+const Airtable   = require('airtable')
 const dateFormat = require('dateformat')
-const fetch = require('node-fetch')
-const { default: axios } = require('axios')
+const fetch      = require('node-fetch')
+const STUBS      = require('./stubs')
 
 async function getPageContents(url) {
     const response = await fetch(url)
@@ -19,7 +18,6 @@ async function getStockInfo(record, nowString) {
 
     let digitalUrlContents = ''
     if (digitalUrl !== undefined) {
-        // digitalUrlContents = (await axios.get(digitalUrl)).data
         digitalUrlContents = await getPageContents(digitalUrl)
     }
 
@@ -27,7 +25,6 @@ async function getStockInfo(record, nowString) {
     const standardInStockCallback = STUBS[store].standardInStockCallback
     let standardUrlContents = ''
     if (standardUrl !== undefined) {
-        // standardUrlContents = (await axios.get(standardUrl)).data
         standardUrlContents = await getPageContents(standardUrl)
     }
 
